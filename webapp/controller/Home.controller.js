@@ -6,6 +6,8 @@ sap.ui.define([
 	return Controller.extend("com.Flexso.DPO.Gegevensinvoer_Sales.controller.Home", {
 		onInit: function () {
 
+			var veldenVerkoop = ["Customer", "Sales organisatie"];
+
 			// GET-call van alle ideeën uit de IdeasSet
 
 			$.ajax({
@@ -16,15 +18,40 @@ sap.ui.define([
 				},
 				url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Ideas?$format=json",
 				success: function (res) {
-					console.log(res);
+					//	console.log(res);
 					for (var i = 0; i < res.d.results.length; i++) {
-						console.log("Idee " + i + " gevonden");
+						//console.log("Idee " + i + " gevonden");
 
 						// Template geassocieerd aan idee opvragen.
 
 						var template = res.d.results[i].Template;
 
+						console.log("Template " + template);
+
 						// Stappen in template opvragen.
+
+						for (var j = 0; j < veldenVerkoop.length; j++) {
+
+							$.ajax({
+								type: "GET",
+								headers: {
+									"X-CSRF-Token": "Fetch",
+									"Authorization": "Basic aGVtZWxqbzpmeWQxVTRwOQ=="
+								},
+								url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Templates(Id=" + template + ",Field='" +
+									veldenVerkoop[i] +
+									"')?$format=json",
+								success: function (res) {
+									console.log(res);
+									//	console.log("Veld " + veldenVerkoop[j] + " bestaat voor template " + template);
+
+								},
+								error: function (err) {
+									console.log(err);
+									//	console.log("Veld " + veldenVerkoop[j] + " niet gevonden in template " + template)
+								}
+							});
+						}
 					}
 				},
 				error: function (err) {
