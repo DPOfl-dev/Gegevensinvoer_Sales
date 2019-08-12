@@ -105,7 +105,7 @@ sap.ui.define([
 
 			// Opzoeken of de corresponderende record voor dat veld reeds een waarde bevat (elke keer doen)
 
-			// Hoe gaan we zien welk veld bij welk idee hoort? Kan ik hiervoor gebruikmaken van de creation date? Zit dit in de metadata van de response?
+			// Hoe gaan we zien welk veld bij welk idee hoort? Kan ik hiervoor gebruikmaken van de creation date? Zit dit in de metadata van de response? Nee, creation date toevoegen voor ideeën en kopieën van velden.
 
 			// Indien dit nog geen waarde bevat: kijken in welke stap dit veld ingevuld moet worden
 
