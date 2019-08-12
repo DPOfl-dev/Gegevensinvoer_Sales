@@ -5,7 +5,9 @@ sap.ui.define([
 
 	return Controller.extend("com.Flexso.DPO.Gegevensinvoer_Sales.controller.Home", {
 		onInit: function () {
-			
+
+			// GET-call van alle ideeën uit de IdeasSet
+
 			$.ajax({
 				type: "GET",
 				headers: {
@@ -15,15 +17,22 @@ sap.ui.define([
 				url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Ideas?$format=json",
 				success: function (res) {
 					console.log(res);
+					for (var i = 0; i < res.d.results.length; i++) {
+						console.log("Idee " + i + " gevonden");
+
+						// Template geassocieerd aan idee opvragen.
+
+						var template = res.d.results[i].Template;
+
+						// Stappen in template opvragen.
+					}
 				},
 				error: function (err) {
 					console.log(err);
 				}
 			});
-			
-			// Rol als applicatie-variabele instellen? --> OPZOEKEN.
 
-			// GET-call van alle ideeën uit de IdeasSet
+			// Rol als applicatie-variabele instellen? --> OPZOEKEN.
 
 			// Resultaat overlopen en nagaan of er een taak voor Sales in het template zit.
 
