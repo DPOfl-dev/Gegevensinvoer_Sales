@@ -25,7 +25,6 @@ sap.ui.define([
 				},
 				url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Ideas?$format=json",
 				success: function (res) {
-					console.log("Breakpoint");
 					for (var i = 0; i < res.d.results.length; i++) {
 
 						// Template geassocieerd aan idee opvragen.
@@ -51,9 +50,13 @@ sap.ui.define([
 									success: function (res) {
 										console.log(res);
 										if (res.d.Role == "Verkoop") {
-											console.log(" Template 1, Taak te voltooien door dienst verkoop");
+
+											// Indien template een taak voor Sales bevat, kijken welk(e) veld(en) in welke stappen van het template ingevuld moeten worden.
+
+											console.log(" Template 1, stap " + res.d.Step + ", taak " + res.d.Task + ": veld " + res.d.Field +
+												" in te vullen door dienst verkoop");
 										} else {
-											console.log(" Template 1, Taak te voltooien door dienst" + res.d.Role);
+											console.log(" Template 1, Taak tijdelijk te negeren in deze applicatie");
 										}
 
 									},
@@ -80,9 +83,13 @@ sap.ui.define([
 									success: function (res) {
 										console.log(res);
 										if (res.d.Role == "Verkoop") {
-											console.log(" Template 2, Taak te voltooien door dienst verkoop");
+
+											// Indien template een taak voor Sales bevat, kijken welk(e) veld(en) in welke stappen van het template ingevuld moeten worden.
+
+											console.log(" Template 2, stap " + res.d.Step + ", taak " + res.d.Task + ": veld " + res.d.Field +
+												" in te vullen door dienst verkoop");
 										} else {
-											console.log(" Template 2, Taak te voltooien door dienst" + res.d.Role);
+											console.log(" Template 2, Taak tijdelijk te negeren in deze applicatie");
 										}
 
 									},
@@ -91,9 +98,6 @@ sap.ui.define([
 									}
 								});
 							}
-
-							// Taken worden correct overlopen en gekoppeld aan de juiste rol.
-
 						}
 					}
 				},
@@ -102,8 +106,6 @@ sap.ui.define([
 					console.log(err);
 				}
 			});
-
-			// Indien template een taak voor Sales bevat, kijken welk(e) veld(en) in welke stappen van het template ingevuld moeten worden.
 
 			// Opzoeken of de corresponderende record voor dat veld reeds een waarde bevat (elke keer doen)
 
