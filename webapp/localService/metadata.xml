@@ -1,0 +1,16 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZBC_DPO_WF_DATA_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="Ideas" sap:content-version="1">
+				<Key><PropertyRef Name="Guid"/></Key><Property Name="Guid" Type="Edm.Binary" Nullable="false" sap:label="GUID"/><Property Name="Id" Type="Edm.Int32" sap:label="Number"/><Property Name="Name" Type="Edm.String" MaxLength="50" sap:label="Character"/><Property Name="Status" Type="Edm.String" MaxLength="50" sap:label="Character"/><Property Name="Description" Type="Edm.String" MaxLength="50" sap:label="Character"/><Property Name="Motivation" Type="Edm.String" MaxLength="50" sap:label="Character"/><Property Name="Remark" Type="Edm.String" MaxLength="50" sap:label="Character"/><Property Name="Template" Type="Edm.Int32" sap:label="Number"/></EntityType>
+			<EntityType Name="Templates" sap:content-version="1">
+				<Key><PropertyRef Name="Id"/><PropertyRef Name="Field"/></Key><Property Name="Id" Type="Edm.Int32" Nullable="false" sap:label="Number"/><Property Name="Field" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Character"/><Property Name="Task" Type="Edm.Int32" sap:label="Number"/><Property Name="Role" Type="Edm.String" MaxLength="50" sap:label="Character"/><Property Name="Step" Type="Edm.Int32" sap:label="Number"/></EntityType>
+			<EntityType Name="Fields" sap:content-version="1">
+				<Key><PropertyRef Name="Guid"/><PropertyRef Name="Field"/></Key><Property Name="Guid" Type="Edm.Binary" Nullable="false" sap:label="GUID"/><Property Name="Field" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Character"/><Property Name="FieldValue" Type="Edm.String" MaxLength="50" sap:label="Character"/></EntityType>
+			<EntityContainer Name="ZBC_DPO_WF_DATA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="Ideas" EntityType="ZBC_DPO_WF_DATA_SRV.Ideas" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="Templates" EntityType="ZBC_DPO_WF_DATA_SRV.Templates" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="Fields" EntityType="ZBC_DPO_WF_DATA_SRV.Fields" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/></EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZBC_DPO_WF_DATA_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZBC_DPO_WF_DATA_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

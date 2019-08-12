@@ -5,14 +5,14 @@ sap.ui.define([
 
 	return Controller.extend("com.Flexso.DPO.Gegevensinvoer_Sales.controller.Home", {
 		onInit: function () {
-
+			
 			$.ajax({
 				type: "GET",
 				headers: {
 					"X-CSRF-Token": "Fetch",
 					"Authorization": "Basic aGVtZWxqbzpmeWQxVTRwOQ=="
 				},
-				url: "/destinations/FG2/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Ideas?$format=json",
+				url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Ideas?$format=json",
 				success: function (res) {
 					console.log(res);
 				},
@@ -20,7 +20,7 @@ sap.ui.define([
 					console.log(err);
 				}
 			});
-
+			
 			// Rol als applicatie-variabele instellen? --> OPZOEKEN.
 
 			// GET-call van alle ideeën uit de IdeasSet

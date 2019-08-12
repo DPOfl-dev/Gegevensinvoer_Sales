@@ -14,16 +14,22 @@
 				"settings": {
 					"odataVersion": "2.0"
 				}
+			},
+			"ZBC_DPO_WF_DATA_SRV": {
+				"uri": "/sap/opu/odata/sap/ZBC_DPO_WF_DATA_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/metadata.xml"
+				}
 			}
 		},
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
 		"sourceTemplate": {
-			"id": "ui5template.basicSAPUI5ApplicationProject",
-			"version": "1.40.12"
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
 		}
 	},
-
 	"sap.ui": {
 		"technology": "UI5",
 		"icons": {
@@ -40,7 +46,6 @@
 			"phone": true
 		}
 	},
-
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
@@ -69,18 +74,22 @@
 				}
 			},
 			"": {
-				"dataSource": "FG2",
+				"type": "sap.ui.model.odata.v2.ODataModel",
 				"settings": {
-					"user": "hemeljo",
-					"password": "fyd1U4p9",
-					"useBatch": false
-				}
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZBC_DPO_WF_DATA_SRV",
+				"preload": true
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -92,11 +101,15 @@
 				"controlId": "app",
 				"clearControlAggregation": false
 			},
-			"routes": [{
-				"name": "RouteHome",
-				"pattern": "RouteHome",
-				"target": ["TargetHome"]
-			}],
+			"routes": [
+				{
+					"name": "RouteHome",
+					"pattern": "RouteHome",
+					"target": [
+						"TargetHome"
+					]
+				}
+			],
 			"targets": {
 				"TargetHome": {
 					"viewType": "XML",
