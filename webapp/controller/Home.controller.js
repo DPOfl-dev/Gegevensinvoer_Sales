@@ -25,15 +25,12 @@ sap.ui.define([
 				},
 				url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Ideas?$format=json",
 				success: function (res) {
-					//	console.log(res);
+					console.log("Breakpoint");
 					for (var i = 0; i < res.d.results.length; i++) {
-						//console.log("Idee " + i + " gevonden");
 
 						// Template geassocieerd aan idee opvragen.
 
 						var template = res.d.results[i].Template;
-
-						console.log("Template " + template);
 
 						// Stappen in template opvragen.
 
@@ -54,16 +51,14 @@ sap.ui.define([
 									success: function (res) {
 										console.log(res);
 										if (res.d.Role == "Verkoop") {
-											console.log(" Template " + template + ", Taak te voltooien door dienst verkoop");
+											console.log(" Template 1, Taak te voltooien door dienst verkoop");
 										} else {
-											console.log(" Template " + template + ", Taak te voltooien door dienst" + res.d.Role);
+											console.log(" Template 1, Taak te voltooien door dienst" + res.d.Role);
 										}
-										//	console.log("Veld " + veldenVerkoop[j] + " bestaat voor template " + template);
 
 									},
 									error: function (err) {
 										console.log(err);
-										//	console.log("Veld " + veldenVerkoop[j] + " niet gevonden in template " + template)
 									}
 								});
 							}
@@ -85,16 +80,14 @@ sap.ui.define([
 									success: function (res) {
 										console.log(res);
 										if (res.d.Role == "Verkoop") {
-											console.log(" Template " + template + ", Taak te voltooien door dienst verkoop");
+											console.log(" Template 2, Taak te voltooien door dienst verkoop");
 										} else {
-											console.log(" Template " + template + ", Taak te voltooien door dienst" + res.d.Role);
+											console.log(" Template 2, Taak te voltooien door dienst" + res.d.Role);
 										}
-										//	console.log("Veld " + veldenVerkoop[j] + " bestaat voor template " + template);
 
 									},
 									error: function (err) {
 										console.log(err);
-										//	console.log("Veld " + veldenVerkoop[j] + " niet gevonden in template " + template)
 									}
 								});
 							}
@@ -105,13 +98,10 @@ sap.ui.define([
 					}
 				},
 				error: function (err) {
+					alert("Er is een fout opgetreden. Bekijk de console voor meer details");
 					console.log(err);
 				}
 			});
-
-			// Rol als applicatie-variabele instellen? --> OPZOEKEN.
-
-			// Resultaat overlopen en nagaan of er een taak voor Sales in het template zit.
 
 			// Indien template een taak voor Sales bevat, kijken welk(e) veld(en) in welke stappen van het template ingevuld moeten worden.
 
