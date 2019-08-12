@@ -37,32 +37,68 @@ sap.ui.define([
 
 						// Stappen in template opvragen.
 
-						for (var j = 0; j < veldenVerkoop.length; j++) {
+						if (template == 1) {
+							// Velden template 1 overlopen
 
-							$.ajax({
-								type: "GET",
-								headers: {
-									"X-CSRF-Token": "Fetch",
-									"Authorization": "Basic aGVtZWxqbzpmeWQxVTRwOQ=="
-								},
-								url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Templates(Id=" + template + ",Field='" +
-									veldenVerkoop[i] +
-									"')?$format=json",
-								success: function (res) {
-									console.log(res);
-									if (res.d.Role == "Verkoop") {
-										console.log("Taak te voltooien door dienst verkoop");
-									} else {
-										console.log("Taak te voltooien door dienst" + res.d.Role);
+							for (var j = 0; j < veldenTemplate1.length; j++) {
+
+								$.ajax({
+									type: "GET",
+									headers: {
+										"X-CSRF-Token": "Fetch",
+										"Authorization": "Basic aGVtZWxqbzpmeWQxVTRwOQ=="
+									},
+									url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Templates(Id=" + template + ",Field='" +
+										veldenTemplate1[j] +
+										"')?$format=json",
+									success: function (res) {
+										console.log(res);
+										if (res.d.Role == "Verkoop") {
+											console.log(" Template " + template + ", Taak te voltooien door dienst verkoop");
+										} else {
+											console.log(" Template " + template + ", Taak te voltooien door dienst" + res.d.Role);
+										}
+										//	console.log("Veld " + veldenVerkoop[j] + " bestaat voor template " + template);
+
+									},
+									error: function (err) {
+										console.log(err);
+										//	console.log("Veld " + veldenVerkoop[j] + " niet gevonden in template " + template)
 									}
-									//	console.log("Veld " + veldenVerkoop[j] + " bestaat voor template " + template);
+								});
+							}
 
-								},
-								error: function (err) {
-									console.log(err);
-									//	console.log("Veld " + veldenVerkoop[j] + " niet gevonden in template " + template)
-								}
-							});
+						} else if (template == 2) {
+							//	Velden template 2 overlopen
+
+							for (var j = 0; j < veldenTemplate2.length; j++) {
+
+								$.ajax({
+									type: "GET",
+									headers: {
+										"X-CSRF-Token": "Fetch",
+										"Authorization": "Basic aGVtZWxqbzpmeWQxVTRwOQ=="
+									},
+									url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Templates(Id=" + template + ",Field='" +
+										veldenTemplate2[j] +
+										"')?$format=json",
+									success: function (res) {
+										console.log(res);
+										if (res.d.Role == "Verkoop") {
+											console.log(" Template " + template + ", Taak te voltooien door dienst verkoop");
+										} else {
+											console.log(" Template " + template + ", Taak te voltooien door dienst" + res.d.Role);
+										}
+										//	console.log("Veld " + veldenVerkoop[j] + " bestaat voor template " + template);
+
+									},
+									error: function (err) {
+										console.log(err);
+										//	console.log("Veld " + veldenVerkoop[j] + " niet gevonden in template " + template)
+									}
+								});
+							}
+
 						}
 					}
 				},
