@@ -55,8 +55,6 @@ sap.ui.define([
 
 											console.log(" Template 1, stap " + res.d.Step + ", taak " + res.d.Task + ": veld " + res.d.Field +
 												" in te vullen door dienst verkoop");
-										} else {
-											console.log(" Template 1, Taak tijdelijk te negeren in deze applicatie");
 										}
 
 									},
@@ -88,8 +86,6 @@ sap.ui.define([
 
 											console.log(" Template 2, stap " + res.d.Step + ", taak " + res.d.Task + ": veld " + res.d.Field +
 												" in te vullen door dienst verkoop");
-										} else {
-											console.log(" Template 2, Taak tijdelijk te negeren in deze applicatie");
 										}
 
 									},
