@@ -6,6 +6,13 @@ sap.ui.define([
 	return Controller.extend("com.Flexso.DPO.Gegevensinvoer_Sales.controller.Home", {
 		onInit: function () {
 
+			// Velden voor elk template
+
+			var veldenTemplate1 = ["Customer", "Distr kanaal"];
+			var veldenTemplate2 = ["Sales organisatie"];
+
+			// Velden voor de rol waarvoor de applicatie geschreven wordt.
+
 			var veldenVerkoop = ["Customer", "Sales organisatie"];
 
 			// GET-call van alle ideeën uit de IdeasSet
@@ -43,6 +50,11 @@ sap.ui.define([
 									"')?$format=json",
 								success: function (res) {
 									console.log(res);
+									if (res.d.Role == "Verkoop") {
+										console.log("Taak te voltooien door dienst verkoop");
+									} else {
+										console.log("Taak te voltooien door dienst" + res.d.Role);
+									}
 									//	console.log("Veld " + veldenVerkoop[j] + " bestaat voor template " + template);
 
 								},
