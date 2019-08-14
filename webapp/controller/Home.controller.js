@@ -47,13 +47,14 @@ sap.ui.define([
 									url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Templates(Id=" + template + ",Field='" +
 										veldenTemplate1[j] +
 										"')?$format=json",
-									success: function (res) {
-										console.log(res);
-										if (res.d.Role == "Verkoop") {
+									success: function (resTemplate1) {
+										console.log(resTemplate1);
+										if (resTemplate1.d.Role == "Verkoop") {
 
 											// Indien template een taak voor Sales bevat, kijken welk(e) veld(en) in welke stappen van het template ingevuld moeten worden.
 
-											console.log(" Template 1, stap " + res.d.Step + ", taak " + res.d.Task + ": veld " + res.d.Field +
+											console.log(" Template 1, stap " + resTemplate1.d.Step + ", taak " + resTemplate1.d.Task + ": veld " + resTemplate1.d
+												.Field +
 												" in te vullen door dienst verkoop");
 										}
 
@@ -78,13 +79,14 @@ sap.ui.define([
 									url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Templates(Id=" + template + ",Field='" +
 										veldenTemplate2[j] +
 										"')?$format=json",
-									success: function (res) {
-										console.log(res);
-										if (res.d.Role == "Verkoop") {
+									success: function (resTemplate2) {
+										console.log(resTemplate2);
+										if (resTemplate2.d.Role == "Verkoop") {
 
 											// Indien template een taak voor Sales bevat, kijken welk(e) veld(en) in welke stappen van het template ingevuld moeten worden.
 
-											console.log(" Template 2, stap " + res.d.Step + ", taak " + res.d.Task + ": veld " + res.d.Field +
+											console.log(" Template 2, stap " + resTemplate2.d.Step + ", taak " + resTemplate2.d.Task + ": veld " + resTemplate2.d
+												.Field +
 												" in te vullen door dienst verkoop");
 										}
 
@@ -104,8 +106,6 @@ sap.ui.define([
 			});
 
 			// Opzoeken of de corresponderende record voor dat veld reeds een waarde bevat (elke keer doen)
-
-			// Hoe gaan we zien welk veld bij welk idee hoort? Kan ik hiervoor gebruikmaken van de creation date? Zit dit in de metadata van de response? Nee, creation date toevoegen voor ideeën en kopieën van velden.
 
 			// Indien dit nog geen waarde bevat: kijken in welke stap dit veld ingevuld moet worden
 
