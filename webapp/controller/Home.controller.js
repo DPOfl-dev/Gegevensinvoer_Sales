@@ -7,8 +7,10 @@ sap.ui.define([
 		onInit: function () {},
 
 		getAllIdeas: function () {
-			$.ajax({
+
+			return $.ajax({
 				type: "GET",
+				async: false,
 				headers: {
 					"X-CSRF-Token": "Fetch",
 					"Authorization": "Basic aGVtZWxqbzpmeWQxVTRwOQ=="
@@ -19,11 +21,21 @@ sap.ui.define([
 					alert("Er is een fout opgetreden. Bekijk de console voor meer details");
 					console.log(err);
 				}
-			});
+			}).responseJSON;
 		},
 
 		getTasks: function () {
-			this.getAllIdeas();
+			// Velden voor elk template
+
+			var veldenTemplate1 = ["Customer", "Distr kanaal"];
+			var veldenTemplate2 = ["Sales organisatie"];
+
+			var allIdeas = this.getAllIdeas();
+
+			for (var i = 0; i < allIdeas.d.results.length; i++) {
+				console.log(allIdeas.d.results[i]);
+			}
+
 		}
 
 	});
