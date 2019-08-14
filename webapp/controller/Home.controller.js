@@ -24,7 +24,25 @@ sap.ui.define([
 			}).responseJSON;
 		},
 
-		getTasks: function () {
+		getTemplateSteps: function (template, veld) {
+			return $.ajax({
+				type: "GET",
+				async: false,
+				headers: {
+					"X-CSRF-Token": "Fetch",
+					"Authorization": "Basic aGVtZWxqbzpmeWQxVTRwOQ=="
+				},
+				url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Templates(Id=" + template + ",Field='" +
+					veld +
+					"')?$format=json",
+				success: function (resTemplate1) {},
+				error: function (err) {
+					console.log(err);
+				}
+			}).responseJSON;
+		},
+
+		tasksButtonPush: function () {
 			// Velden voor elk template
 
 			var veldenTemplate1 = ["Customer", "Distr kanaal"];
@@ -33,7 +51,24 @@ sap.ui.define([
 			var allIdeas = this.getAllIdeas();
 
 			for (var i = 0; i < allIdeas.d.results.length; i++) {
-				console.log(allIdeas.d.results[i]);
+
+				// Template geassocieerd aan idee opvragen.
+
+				var template = allIdeas.d.results[i].Template;
+
+				// Stappen in template opvragen.
+
+				if (template == 1) {
+					// Velden template 1 overlopen
+
+					for (var j = 0; j < veldenTemplate1.length; j++) {
+						var geselecteerdVeld = this.getTemplateSteps(template, veldenTemplate1[j]);
+						console.log(geselecteerdVeld);
+					}
+
+				} else if (template == 2) {
+					console.log("Stappen template 2");
+				}
 			}
 
 		}
