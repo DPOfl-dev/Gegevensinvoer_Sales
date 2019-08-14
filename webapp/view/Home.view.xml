@@ -3,7 +3,10 @@
 		<App id="app">
 			<pages>
 				<Page id="page" title="{i18n>title}">
-					<content></content>
+					<content>
+						<Button text="Get your tasks" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
+							press="getTasks"/>
+					</content>
 				</Page>
 			</pages>
 		</App>
