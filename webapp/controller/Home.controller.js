@@ -43,6 +43,7 @@ sap.ui.define([
 		},
 
 		getFieldValue: function (guid, veld) {
+
 			return $.ajax({
 				type: "GET",
 				async: false,
@@ -50,7 +51,7 @@ sap.ui.define([
 					"X-CSRF-Token": "Fetch",
 					"Authorization": "Basic aGVtZWxqbzpmeWQxVTRwOQ=="
 				},
-				url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Templates(Guid=" + guid + ",Field='" +
+				url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Fields(Guid=" + encodeURIComponent(guid) + ",Field='" +
 					veld +
 					"')?$format=json",
 				success: function (resTemplate1) {},
