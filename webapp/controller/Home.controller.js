@@ -42,6 +42,24 @@ sap.ui.define([
 			}).responseJSON;
 		},
 
+		getFieldValue: function (guid, veld) {
+			return $.ajax({
+				type: "GET",
+				async: false,
+				headers: {
+					"X-CSRF-Token": "Fetch",
+					"Authorization": "Basic aGVtZWxqbzpmeWQxVTRwOQ=="
+				},
+				url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Templates(Guid=" + guid + ",Field='" +
+					veld +
+					"')?$format=json",
+				success: function (resTemplate1) {},
+				error: function (err) {
+					console.log(err);
+				}
+			}).responseJSON;
+		},
+
 		tasksButtonPush: function () {
 			// Velden voor elk template
 
@@ -62,8 +80,15 @@ sap.ui.define([
 					// Velden template 1 overlopen
 
 					for (var j = 0; j < veldenTemplate1.length; j++) {
-						var geselecteerdVeld = this.getTemplateSteps(template, veldenTemplate1[j]);
-						console.log(geselecteerdVeld);
+						var geselecteerdVeld = this.getTemplateSteps(template, veldenTemplate1[j]); // geselecteerdVeld bevat de "master data" van een veld in een template (TemplateID, veldnaam, rol, stap, taak).
+						if (geselecteerdVeld.d.Role == "Verkoop") {
+							// Indien template een taak voor Sales bevat, kijken welk(e) veld(en) in welke stappen van het template ingevuld moeten worden.
+							var guidIdea = allIdeas.d.results[i].Guid;
+							var fieldName = geselecteerdVeld.d.Field;
+
+							var ingevuldeWaarde = this.getFieldValue(guidIdea, fieldName);
+							console.log(ingevuldeWaarde);
+						}
 					}
 
 				} else if (template == 2) {
