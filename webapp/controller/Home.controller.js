@@ -103,6 +103,8 @@ sap.ui.define([
 					alert("Er is een fout opgetreden. Bekijk de console voor meer details");
 					console.log(err);
 				}
+			}).done(function (doneData) {
+				console.log("Done-methode test");
 			});
 
 			// Opzoeken of de corresponderende record voor dat veld reeds een waarde bevat (elke keer doen)
