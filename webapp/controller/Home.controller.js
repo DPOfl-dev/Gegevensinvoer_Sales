@@ -1,6 +1,7 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function (Controller) {
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/model/json/JSONModel"
+], function (Controller, JSONModel) {
 	"use strict";
 
 	return Controller.extend("com.Flexso.DPO.Gegevensinvoer_Sales.controller.Home", {
@@ -64,6 +65,12 @@ sap.ui.define([
 		tasksButtonPush: function () {
 			// Velden voor elk template
 
+			var ideasModel = new JSONModel({
+				"d": {
+					"results": []
+				}
+			});
+
 			var veldenTemplate1 = ["Customer", "Distr kanaal"];
 			var veldenTemplate2 = ["Sales organisatie"];
 
@@ -84,6 +91,10 @@ sap.ui.define([
 						var geselecteerdVeld = this.getTemplateSteps(template, veldenTemplate1[j]); // geselecteerdVeld bevat de "master data" van een veld in een template (TemplateID, veldnaam, rol, stap, taak).
 						if (geselecteerdVeld.d.Role == "Verkoop") {
 							// Indien template een taak voor Sales bevat, kijken welk(e) veld(en) in welke stappen van het template ingevuld moeten worden.
+
+							console.log("Breakpoint!!");
+
+							//	localIdeasData.push(allIdeas.d.results[i]);
 							var guidIdea = allIdeas.d.results[i].Guid;
 							var fieldName = geselecteerdVeld.d.Field;
 
@@ -91,6 +102,7 @@ sap.ui.define([
 							console.log(ingevuldeWaarde);
 						}
 					}
+					//	ideasModel.setData(localIdeasData);
 
 				} else if (template == 2) {
 					console.log("Stappen template 2");
