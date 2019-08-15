@@ -108,6 +108,9 @@ sap.ui.define([
 				} else if (template == 2) {
 					console.log("Stappen template 2");
 				}
+
+				this.getView().setModel(ideasModel);
+				console.log("Stop hier even");
 			}
 
 		}
