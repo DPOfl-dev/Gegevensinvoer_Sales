@@ -6,6 +6,10 @@
 					<content>
 						<Button text="Get your tasks" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
 							press="tasksButtonPush"/>
+						<!-- <List items="{/d/results}">
+							<items>
+								<ObjectListItem title="{Name}"/></items>
+						</List> -->
 					</content>
 				</Page>
 			</pages>

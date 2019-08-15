@@ -44,7 +44,6 @@ sap.ui.define([
 		},
 
 		getFieldValue: function (guid, veld) {
-
 			return $.ajax({
 				type: "GET",
 				async: false,
