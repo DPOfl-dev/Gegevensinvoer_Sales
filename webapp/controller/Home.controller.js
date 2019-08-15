@@ -16,7 +16,6 @@ sap.ui.define([
 			});
 
 			var ideasArray = ideasModel.getProperty("/d/results");
-			console.log("Check hier!");
 
 			var veldenTemplate1 = ["Customer", "Distr kanaal"];
 			var veldenTemplate2 = ["Sales organisatie"];
@@ -110,8 +109,8 @@ sap.ui.define([
 			}).responseJSON;
 		},
 
-		tasksButtonPush: function () {
-
+		onIdeaSelection: function () {
+			alert("Tijd om naar de volgende stap te gaan");
 		}
 
 	});

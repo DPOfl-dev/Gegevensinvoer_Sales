@@ -6,7 +6,7 @@
 					<content>
 						<List items="{/d/results}">
 							<items>
-								<ObjectListItem title="{Name}"/></items>
+								<ObjectListItem title="{Name}" press="onIdeaSelection" type="Navigation"/></items>
 						</List>
 					</content>
 				</Page>
