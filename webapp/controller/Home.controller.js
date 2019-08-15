@@ -42,8 +42,8 @@ sap.ui.define([
 							var guidIdea = allIdeas.d.results[i].Guid;
 							var fieldName = geselecteerdVeld.d.Field;
 
-							//var ingevuldeWaarde = this.getFieldValue(guidIdea, fieldName);
-							//console.log(ingevuldeWaarde);
+							var ingevuldeWaarde = this.getFieldValue(guidIdea, fieldName).d.FieldValue;
+							console.log(ingevuldeWaarde);
 
 							// Checken of de waarde van FieldValue een lege string is (of null?)
 							//Als dat zo is: ideasArray.push(allIdeas.d.results[i]); en verwijder regel 41
@@ -103,7 +103,7 @@ sap.ui.define([
 					"X-CSRF-Token": "Fetch",
 					"Authorization": "Basic aGVtZWxqbzpmeWQxVTRwOQ=="
 				},
-				url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Fields(Guid=" + encodeURIComponent(guid) + ",Field='" +
+				url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Fields(Guid=guid'" + guid + "',Field='" +
 					veld +
 					"')?$format=json",
 				success: function (resTemplate1) {},
@@ -113,8 +113,11 @@ sap.ui.define([
 			}).responseJSON;
 		},
 
-		onIdeaSelection: function () {
-			alert("Tijd om naar de volgende stap te gaan");
+		onIdeaSelection: function (oEvent) {
+			var sIdeaGUID = oEvent.getSource().getBindingContext().getObject().Guid;
+			this.getOwnerComponent().getRouter().navto("tasksoverview", {
+				ideaGUID: sIdeaGUID
+			});
 		}
 
 	});
