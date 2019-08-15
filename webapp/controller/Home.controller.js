@@ -71,6 +71,9 @@ sap.ui.define([
 				}
 			});
 
+			var ideasArray = ideasModel.getProperty("/d/results");
+			console.log("Check hier!");
+
 			var veldenTemplate1 = ["Customer", "Distr kanaal"];
 			var veldenTemplate2 = ["Sales organisatie"];
 
@@ -92,17 +95,15 @@ sap.ui.define([
 						if (geselecteerdVeld.d.Role == "Verkoop") {
 							// Indien template een taak voor Sales bevat, kijken welk(e) veld(en) in welke stappen van het template ingevuld moeten worden.
 
-							console.log("Breakpoint!!");
-
-							//	localIdeasData.push(allIdeas.d.results[i]);
+							ideasArray.push(allIdeas.d.results[i]);
 							var guidIdea = allIdeas.d.results[i].Guid;
 							var fieldName = geselecteerdVeld.d.Field;
 
-							var ingevuldeWaarde = this.getFieldValue(guidIdea, fieldName);
-							console.log(ingevuldeWaarde);
+							//var ingevuldeWaarde = this.getFieldValue(guidIdea, fieldName);
+							//console.log(ingevuldeWaarde);
 						}
 					}
-					//	ideasModel.setData(localIdeasData);
+					console.log("Test hier nog eens");
 
 				} else if (template == 2) {
 					console.log("Stappen template 2");
