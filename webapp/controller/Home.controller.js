@@ -44,6 +44,10 @@ sap.ui.define([
 
 							//var ingevuldeWaarde = this.getFieldValue(guidIdea, fieldName);
 							//console.log(ingevuldeWaarde);
+
+							// Checken of de waarde van FieldValue een lege string is (of null?)
+							//Als dat zo is: ideasArray.push(allIdeas.d.results[i]); en verwijder regel 41
+							// Als dat niet zo is, dan moet het idee niet weergegeven worden in de lijst.
 						}
 					}
 
