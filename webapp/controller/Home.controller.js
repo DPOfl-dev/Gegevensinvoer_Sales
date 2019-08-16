@@ -156,7 +156,7 @@ sap.ui.define([
 							console.log(ingevuldeWaarde);
 
 							if (ingevuldeWaarde == "") {
-								console.log("Het veld dat ingevuld moet worden is: GUID: " + sIdeaGUID + ", field: " + fieldName);
+								//console.log("Het veld dat ingevuld moet worden is: GUID: " + sIdeaGUID + ", field: " + fieldName);
 							} else {
 								console.log("Veld heeft al een waarde");
 							}
@@ -166,9 +166,11 @@ sap.ui.define([
 			} else if (iGeassocieerdTemplate == 2) {
 				console.log("onClick voor template 2");
 			}
-			//	this.getOwnerComponent().getRouter().navto("tasksoverview", {
-			//		ideaGUID: sIdeaGUID
-			//	});
+
+			this.getOwnerComponent().getRouter().navto("tasksoverview", {
+				ideaGUID: sIdeaGUID,
+				field: fieldName
+			});
 		}
 	});
 });
