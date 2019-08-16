@@ -144,68 +144,25 @@ sap.ui.define([
 		},
 
 		onIdeaSelection: function (oEvent) {
-			var allIdeas = this.getAllIdeas();
+			// Selected list item
+			var oSelectedListItem = oEvent.getSource();
+			// Idea data
+			var oIdea = oSelectedListItem.getBindingContext().getObject();
+			// GUID of selected item
+			var sGuid = oIdea.Guid;
+			console.log("sGuid: " + sGuid);
 
-			var veldenTemplate1 = ["Customer", "Distr kanaal"];
-			var veldenTemplate2 = ["Sales organisatie"];
-
-			console.log("Breakpoint navigatie");
-			var sIdeaGUID = oEvent.getSource().getBindingContext().getObject().Guid;
-			var iGeassocieerdTemplate = oEvent.getSource().getBindingContext().getObject().Template;
-			if (iGeassocieerdTemplate == 1) {
-				for (var i = 0; i < allIdeas.d.results.length; i++) {
-					// Checken welk veld leeg is.
-
-					for (var j = 0; j < veldenTemplate1.length; j++) {
-						var geselecteerdVeld = this.getTemplateSteps(iGeassocieerdTemplate, veldenTemplate1[j]); // geselecteerdVeld bevat de "master data" van een veld in een template (TemplateID, veldnaam, rol, stap, taak).
-						if (geselecteerdVeld.d.Role == "Verkoop") {
-							// Indien template een taak voor Sales bevat, kijken welk(e) veld(en) in welke stappen van het template ingevuld moeten worden.
-
-							var fieldName = geselecteerdVeld.d.Field;
-
-							var ingevuldeWaarde = this.getFieldValue(sIdeaGUID, fieldName).d.FieldValue;
-							console.log(ingevuldeWaarde);
-
-							if (ingevuldeWaarde == "") {
-								console.log("Het veld dat ingevuld moet worden is: GUID: " + sIdeaGUID + ", field: " + fieldName);
-							} else {
-								console.log("Veld heeft al een waarde");
-							}
-						}
-					}
-				}
-			} else if (iGeassocieerdTemplate == 2) {
-				for (var k = 0; k < allIdeas.d.results.length; k++) {
-					// Checken welk veld leeg is.
-
-					for (var l = 0; l < veldenTemplate2.length; l++) {
-						var geselecteerdVeldTemplate2 = this.getTemplateSteps(iGeassocieerdTemplate, veldenTemplate2[l]); // geselecteerdVeld bevat de "master data" van een veld in een template (TemplateID, veldnaam, rol, stap, taak).
-						if (geselecteerdVeldTemplate2.d.Role == "Verkoop") {
-							// Indien template een taak voor Sales bevat, kijken welk(e) veld(en) in welke stappen van het template ingevuld moeten worden.
-
-							var fieldName = geselecteerdVeldTemplate2.d.Field;
-
-							var ingevuldeWaardeTemplate2 = this.getFieldValue(sIdeaGUID, fieldName).d.FieldValue;
-							console.log(ingevuldeWaardeTemplate2);
-
-							if (ingevuldeWaardeTemplate2 == "") {
-								console.log("Het veld dat ingevuld moet worden is: GUID: " + sIdeaGUID + ", field: " + fieldName);
-							} else {
-								console.log("Veld heeft al een waarde");
-							}
-						}
-					}
+			// Field data
+			var aFields = oSelectedListItem.getModel().getData().d.fields;
+			// Field data corresponding with selected item
+			var oField = null;
+			for (var i = 0; i < aFields.length; i++) {
+				if (aFields[i].d.Guid == sGuid) {
+					oField = aFields[i];
 				}
 			}
 
-			var oFCL = this.oView.getParent().getParent();
-
-			oFCL.setLayout(fioriLibrary.LayoutType.TwoColumnsMidExpanded);
-
-			//this.getOwnerComponent().getRouter().navTo("tasksoverview", {
-			//	ideaGUID: sIdeaGUID,
-			//	field: fieldName
-			// });
+			console.log(oField);
 		}
 	});
 });
