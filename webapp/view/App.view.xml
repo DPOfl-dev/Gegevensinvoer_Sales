@@ -3,5 +3,8 @@
 		<beginColumnPages>
 			<mvc:XMLView id="beginView" viewName="com.Flexso.DPO.Gegevensinvoer_Sales.view.Home"/>
 		</beginColumnPages>
+		<midColumnPages>
+			<mvc:XMLView id="detailView" viewName="com.Flexso.DPO.Gegevensinvoer_Sales.view.tasksOverview"/>
+		</midColumnPages>
 	</FlexibleColumnLayout>
 </mvc:View>

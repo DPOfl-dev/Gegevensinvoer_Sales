@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/json/JSONModel"
-], function (Controller, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"sap/f/library"
+], function (Controller, JSONModel, fioriLibrary) {
 	"use strict";
 
 	return Controller.extend("com.Flexso.DPO.Gegevensinvoer_Sales.controller.Home", {
@@ -188,10 +189,14 @@ sap.ui.define([
 				}
 			}
 
-			this.getOwnerComponent().getRouter().navTo("tasksoverview", {
-				ideaGUID: sIdeaGUID,
-				field: fieldName
-			});
+			var oFCL = this.oView.getParent().getParent();
+
+			oFCL.setLayout(fioriLibrary.LayoutType.TwoColumnsMidExpanded);
+
+			//this.getOwnerComponent().getRouter().navTo("tasksoverview", {
+			//	ideaGUID: sIdeaGUID,
+			//	field: fieldName
+			// });
 		}
 	});
 });
