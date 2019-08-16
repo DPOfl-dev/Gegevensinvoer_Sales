@@ -38,25 +38,47 @@ sap.ui.define([
 						if (geselecteerdVeld.d.Role == "Verkoop") {
 							// Indien template een taak voor Sales bevat, kijken welk(e) veld(en) in welke stappen van het template ingevuld moeten worden.
 
-							ideasArray.push(allIdeas.d.results[i]);
 							var guidIdea = allIdeas.d.results[i].Guid;
 							var fieldName = geselecteerdVeld.d.Field;
 
 							var ingevuldeWaarde = this.getFieldValue(guidIdea, fieldName).d.FieldValue;
 							console.log(ingevuldeWaarde);
 
-							// Checken of de waarde van FieldValue een lege string is (of null?)
-							//Als dat zo is: ideasArray.push(allIdeas.d.results[i]); en verwijder regel 41
-							// Als dat niet zo is, dan moet het idee niet weergegeven worden in de lijst.
+							if (ingevuldeWaarde == "") {
+								ideasArray.push(allIdeas.d.results[i]);
+							} else {
+								console.log("Wel een waarde ingegeven");
+							}
 						}
 					}
 
 				} else if (template == 2) {
-					console.log("Stappen template 2");
+					// Velden template 1 overlopen
+
+					for (var k = 0; k < veldenTemplate2.length; k++) {
+						var geselecteerdVeldTemplate2 = this.getTemplateSteps(template, veldenTemplate2[k]); // geselecteerdVeld bevat de "master data" van een veld in een template (TemplateID, veldnaam, rol, stap, taak).
+						if (geselecteerdVeldTemplate2.d.Role == "Verkoop") {
+							// Indien template een taak voor Sales bevat, kijken welk(e) veld(en) in welke stappen van het template ingevuld moeten worden.
+
+							var guidIdeaTemplate2 = allIdeas.d.results[i].Guid;
+							var fieldNameTemplate2 = geselecteerdVeldTemplate2.d.Field;
+
+							var ingevuldeWaardeTemplate2 = this.getFieldValue(guidIdeaTemplate2, fieldNameTemplate2).d.FieldValue;
+							console.log(ingevuldeWaardeTemplate2);
+
+							if (ingevuldeWaarde == "") {
+								ideasArray.push(allIdeas.d.results[i]);
+							} else {
+								console.log("Wel een waarde ingegeven");
+							}
+						}
+					}
 				}
 
-				this.getView().setModel(ideasModel);
 			}
+
+			console.log("Breakpoint");
+			this.getView().setModel(ideasModel);
 		},
 
 		getAllIdeas: function () {
@@ -114,6 +136,7 @@ sap.ui.define([
 		},
 
 		onIdeaSelection: function (oEvent) {
+			console.log("Breakpoint navigatie");
 			var sIdeaGUID = oEvent.getSource().getBindingContext().getObject().Guid;
 			this.getOwnerComponent().getRouter().navto("tasksoverview", {
 				ideaGUID: sIdeaGUID
