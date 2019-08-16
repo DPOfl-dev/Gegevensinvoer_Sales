@@ -111,7 +111,8 @@
 					"clearControlAggregation": false,
 					"viewId": "Home",
 					"viewName": "Home",
-					"viewLevel": 1
+					"viewLevel": 1,
+					"controlAggregation": "beginColumnPages"
 				},
 				"tasksoverview": {
 					"viewType": "XML",
