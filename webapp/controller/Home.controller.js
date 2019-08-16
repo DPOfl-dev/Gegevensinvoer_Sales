@@ -187,7 +187,7 @@ sap.ui.define([
 				}
 			}
 
-			this.getOwnerComponent().getRouter().navto("tasksoverview", {
+			this.getOwnerComponent().getRouter().navTo("tasksoverview", {
 				ideaGUID: sIdeaGUID,
 				field: fieldName
 			});
