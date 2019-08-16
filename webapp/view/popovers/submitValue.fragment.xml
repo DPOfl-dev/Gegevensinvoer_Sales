@@ -3,9 +3,13 @@
 		<footer>
 			<Toolbar>
 				<ToolbarSpacer/>
-				<Button id="saveBttn" text="Save label" press="onSaveLabel"/>
+				<Button id="saveBttn" text="Save value" press="onSaveFieldValue"/>
 			</Toolbar>
 		</footer>
-		<Text text="{/d/Field}"/>
+		<VBox>
+			<Text text="Please provide a value for field {/d/Field} :"/>
+			<Input type="Text" value="{/d/FieldValue}" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false"
+				maxLength="0"/>
+		</VBox>
 	</Popover>
 </core:FragmentDefinition>

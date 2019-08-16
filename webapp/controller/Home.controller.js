@@ -182,6 +182,15 @@ sap.ui.define([
 				}
 				this._oSaveValuePopover.openBy(oEvent.getSource());
 			}
+		},
+
+		onSaveFieldValue: function (oEvent) {
+
+			var updatedFieldGuid = oEvent.getSource().getModel().oData.d.Guid;
+			var updatedFieldName = oEvent.getSource().getModel().oData.d.Field;
+			var enteredValue = oEvent.getSource().getModel().oData.d.FieldValue;
+
+			alert("Guid: " + updatedFieldGuid + ", field: " + updatedFieldName + ", entered value: " + enteredValue);
 		}
 	});
 });
