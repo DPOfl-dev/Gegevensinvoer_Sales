@@ -4,7 +4,7 @@
 			<pages>
 				<Page id="page" title="{i18n>title}">
 					<content>
-						<List items="{/d/results}">
+						<List items="{/d/ideas}">
 							<items>
 								<ObjectListItem title="{Name}" press="onIdeaSelection" type="Navigation"/></items>
 						</List>

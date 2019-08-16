@@ -10,11 +10,13 @@ sap.ui.define([
 			this.oView = this.getView();
 			var ideasModel = new JSONModel({
 				"d": {
-					"results": []
+					"ideas": [],
+					"fields": []
 				}
 			});
 
-			var ideasArray = ideasModel.getProperty("/d/results");
+			var ideasArray = ideasModel.getProperty("/d/ideas");
+			var fieldsArray = ideasModel.getProperty("/d/fields")
 
 			// Velden voor elk template
 
@@ -42,11 +44,14 @@ sap.ui.define([
 							var guidIdea = allIdeas.d.results[i].Guid;
 							var fieldName = geselecteerdVeld.d.Field;
 
-							var ingevuldeWaarde = this.getFieldValue(guidIdea, fieldName).d.FieldValue;
+							var field = this.getFieldValue(guidIdea, fieldName);
+							var ingevuldeWaarde = field.d.FieldValue;
 							console.log(ingevuldeWaarde);
 
 							if (ingevuldeWaarde == "") {
 								ideasArray.push(allIdeas.d.results[i]);
+								fieldsArray.push(field);
+								console.log("Breakpoint");
 							} else {
 								console.log("Wel een waarde ingegeven");
 							}
@@ -64,11 +69,14 @@ sap.ui.define([
 							var guidIdeaTemplate2 = allIdeas.d.results[i].Guid;
 							var fieldNameTemplate2 = geselecteerdVeldTemplate2.d.Field;
 
-							var ingevuldeWaardeTemplate2 = this.getFieldValue(guidIdeaTemplate2, fieldNameTemplate2).d.FieldValue;
+							var fieldTemplate2 = this.getFieldValue(guidIdeaTemplate2, fieldNameTemplate2);
+
+							var ingevuldeWaardeTemplate2 = fieldTemplate2.d.FieldValue;
 							console.log(ingevuldeWaardeTemplate2);
 
 							if (ingevuldeWaarde == "") {
 								ideasArray.push(allIdeas.d.results[i]);
+								fieldsArray.push(fieldTemplate2);
 							} else {
 								console.log("Wel een waarde ingegeven");
 							}
@@ -78,6 +86,7 @@ sap.ui.define([
 
 			}
 			this.getView().setModel(ideasModel);
+			console.log("Breakpoint");
 		},
 
 		getAllIdeas: function () {
