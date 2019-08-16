@@ -190,7 +190,32 @@ sap.ui.define([
 			var updatedFieldName = oEvent.getSource().getModel().oData.d.Field;
 			var enteredValue = oEvent.getSource().getModel().oData.d.FieldValue;
 
-			alert("Guid: " + updatedFieldGuid + ", field: " + updatedFieldName + ", entered value: " + enteredValue);
+			//	alert("Guid: " + updatedFieldGuid + ", field: " + updatedFieldName + ", entered value: " + enteredValue);
+
+			var recordData = {
+				"FieldValue": enteredValue
+			};
+
+			$.ajax({
+				type: "PUT",
+				async: true,
+				headers: {
+					"X-CSRF-Token": "Fetch",
+					"Authorization": "Basic aGVtZWxqbzpmeWQxVTRwOQ=="
+				},
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+				url: "/sap/opu/odata/SAP/ZBC_DPO_WF_DATA_SRV/Fields(Guid=guid'" + updatedFieldGuid + "',Field='" +
+					updatedFieldName +
+					"')",
+				data: JSON.stringify(recordData),
+				success: function (resTemplate1) {},
+				error: function (err) {
+					console.log(err);
+				}
+			}).done(function (data) {
+				alert("Record updated");
+			});
 		}
 	});
 });
