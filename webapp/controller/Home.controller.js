@@ -1,13 +1,16 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
-	"sap/f/library"
-], function (Controller, JSONModel, fioriLibrary) {
+	"sap/f/library",
+	"sap/m/Dialog",
+	"sap/m/Text"
+], function (Controller, JSONModel, fioriLibrary, Dialog, Text) {
 	"use strict";
 
 	return Controller.extend("com.Flexso.DPO.Gegevensinvoer_Sales.controller.Home", {
 		onInit: function () {
 			this.oView = this.getView();
+			this._oSaveValuePopover = null;
 			var ideasModel = new JSONModel({
 				"d": {
 					"ideas": [],
@@ -163,6 +166,24 @@ sap.ui.define([
 			}
 
 			console.log(oField);
+
+			if (oField.d.FieldValue == "") {
+				var fieldsModel = new JSONModel({
+					"d": {
+						"fields": []
+					}
+				});
+				fieldsModel.getProperty("/d/fields").push(oField)
+
+				if (!this._oSaveValuePopover) {
+					this._oSaveValuePopover = sap.ui.xmlfragment("popoverNavCon", "com.Flexso.DPO.Gegevensinvoer_Sales.view.popovers.submitValue",
+						this);
+					this._oSaveValuePopover.setModel(fieldsModel);
+					console.log("Breakpoint");
+					this.getView().addDependent(this._oSaveValuePopover);
+				}
+				this._oSaveValuePopover.openBy(oEvent.getSource());
+			}
 		}
 	});
 });

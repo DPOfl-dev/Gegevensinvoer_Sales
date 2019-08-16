@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Popover title="Add a label" class="sapUiContentPadding" placement="Bottom">
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button id="saveBttn" text="Save label" press="onSaveLabel"/>
+			</Toolbar>
+		</footer>
+		<Text text="Label Name:" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+		<Input type="Text" value="test" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0"/>
+		<ToolbarSpacer width=""/>
+		<Text text="Label Description:" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+		<Input type="Text" value="test" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" maxLength="0"/>
+	</Popover>
+</core:FragmentDefinition>
