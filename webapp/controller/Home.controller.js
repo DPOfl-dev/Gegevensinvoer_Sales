@@ -169,11 +169,9 @@ sap.ui.define([
 
 			if (oField.d.FieldValue == "") {
 				var fieldsModel = new JSONModel({
-					"d": {
-						"fields": []
-					}
+					"d": {}
 				});
-				fieldsModel.getProperty("/d/fields").push(oField)
+				fieldsModel.setData(oField);
 
 				if (!this._oSaveValuePopover) {
 					this._oSaveValuePopover = sap.ui.xmlfragment("popoverNavCon", "com.Flexso.DPO.Gegevensinvoer_Sales.view.popovers.submitValue",
