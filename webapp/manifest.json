@@ -103,6 +103,12 @@
 				"name": "",
 				"pattern": "RouteHome",
 				"target": ["TargetHome"]
+			}, {
+				"name": "tasksoverview",
+				"pattern": "TargetHome/tasksoverview/:ideaGUID:/:field:",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["TargetHome", "tasksoverview"]
 			}],
 			"targets": {
 				"TargetHome": {
