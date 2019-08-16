@@ -156,7 +156,7 @@ sap.ui.define([
 							console.log(ingevuldeWaarde);
 
 							if (ingevuldeWaarde == "") {
-								//console.log("Het veld dat ingevuld moet worden is: GUID: " + sIdeaGUID + ", field: " + fieldName);
+								console.log("Het veld dat ingevuld moet worden is: GUID: " + sIdeaGUID + ", field: " + fieldName);
 							} else {
 								console.log("Veld heeft al een waarde");
 							}
@@ -164,7 +164,27 @@ sap.ui.define([
 					}
 				}
 			} else if (iGeassocieerdTemplate == 2) {
-				console.log("onClick voor template 2");
+				for (var k = 0; k < allIdeas.d.results.length; k++) {
+					// Checken welk veld leeg is.
+
+					for (var l = 0; l < veldenTemplate2.length; l++) {
+						var geselecteerdVeldTemplate2 = this.getTemplateSteps(iGeassocieerdTemplate, veldenTemplate2[l]); // geselecteerdVeld bevat de "master data" van een veld in een template (TemplateID, veldnaam, rol, stap, taak).
+						if (geselecteerdVeldTemplate2.d.Role == "Verkoop") {
+							// Indien template een taak voor Sales bevat, kijken welk(e) veld(en) in welke stappen van het template ingevuld moeten worden.
+
+							var fieldName = geselecteerdVeldTemplate2.d.Field;
+
+							var ingevuldeWaardeTemplate2 = this.getFieldValue(sIdeaGUID, fieldName).d.FieldValue;
+							console.log(ingevuldeWaardeTemplate2);
+
+							if (ingevuldeWaardeTemplate2 == "") {
+								console.log("Het veld dat ingevuld moet worden is: GUID: " + sIdeaGUID + ", field: " + fieldName);
+							} else {
+								console.log("Veld heeft al een waarde");
+							}
+						}
+					}
+				}
 			}
 
 			this.getOwnerComponent().getRouter().navto("tasksoverview", {
