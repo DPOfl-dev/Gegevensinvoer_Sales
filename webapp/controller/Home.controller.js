@@ -6,6 +6,7 @@ sap.ui.define([
 
 	return Controller.extend("com.Flexso.DPO.Gegevensinvoer_Sales.controller.Home", {
 		onInit: function () {
+			this.oView = this.getView();
 			var ideasModel = new JSONModel({
 				"d": {
 					"results": []

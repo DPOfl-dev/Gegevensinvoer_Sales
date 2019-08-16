@@ -49,17 +49,18 @@
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
-			"viewName": "com.Flexso.DPO.Gegevensinvoer_Sales.view.Home",
+			"viewName": "com.Flexso.DPO.Gegevensinvoer_Sales.view.App",
 			"type": "XML",
 			"async": true,
-			"id": "Home"
+			"id": "fcl"
 		},
 		"dependencies": {
 			"minUI5Version": "1.60.1",
 			"libs": {
 				"sap.ui.layout": {},
 				"sap.ui.core": {},
-				"sap.m": {}
+				"sap.m": {},
+				"sap.f": {}
 			}
 		},
 		"contentDensities": {
@@ -100,7 +101,7 @@
 				"clearControlAggregation": false
 			},
 			"routes": [{
-				"name": "",
+				"name": "master",
 				"pattern": "RouteHome",
 				"target": ["TargetHome"]
 			}, {

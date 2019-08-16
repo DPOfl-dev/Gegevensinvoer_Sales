@@ -1,4 +1,5 @@
-<mvc:View controllerName="com.Flexso.DPO.Gegevensinvoer_Sales.controller.Home" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+<mvc:View controllerName="com.Flexso.DPO.Gegevensinvoer_Sales.controller.tasksOverview" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m">
 	<Shell id="shell2">
 		<App id="app2">
 			<pages>
