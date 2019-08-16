@@ -85,11 +85,9 @@
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -101,22 +99,28 @@
 				"controlId": "app",
 				"clearControlAggregation": false
 			},
-			"routes": [
-				{
-					"name": "RouteHome",
-					"pattern": "RouteHome",
-					"target": [
-						"TargetHome"
-					]
-				}
-			],
+			"routes": [{
+				"name": "",
+				"pattern": "RouteHome",
+				"target": ["TargetHome"]
+			}],
 			"targets": {
 				"TargetHome": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewId": "Home",
-					"viewName": "Home"
+					"viewName": "Home",
+					"viewLevel": 1
+				},
+				"tasksoverview": {
+					"viewType": "XML",
+					"transition": "show",
+					"clearControlAggregation": false,
+					"viewName": "tasksOverview",
+					"viewId": "tasksOverview",
+					"viewLevel": 1,
+					"controlAggregation": "midColumnPages"
 				}
 			}
 		}
