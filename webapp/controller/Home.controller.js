@@ -6,9 +6,6 @@ sap.ui.define([
 
 	return Controller.extend("com.Flexso.DPO.Gegevensinvoer_Sales.controller.Home", {
 		onInit: function () {
-
-			// Velden voor elk template
-
 			var ideasModel = new JSONModel({
 				"d": {
 					"results": []
@@ -16,6 +13,8 @@ sap.ui.define([
 			});
 
 			var ideasArray = ideasModel.getProperty("/d/results");
+
+			// Velden voor elk template
 
 			var veldenTemplate1 = ["Customer", "Distr kanaal"];
 			var veldenTemplate2 = ["Sales organisatie"];
@@ -76,8 +75,6 @@ sap.ui.define([
 				}
 
 			}
-
-			console.log("Breakpoint");
 			this.getView().setModel(ideasModel);
 		},
 
@@ -136,8 +133,42 @@ sap.ui.define([
 		},
 
 		onIdeaSelection: function (oEvent) {
+
+			var allIdeas = this.getAllIdeas();
+
+			var veldenTemplate1 = ["Customer", "Distr kanaal"];
+			var veldenTemplate2 = ["Sales organisatie"];
+
 			console.log("Breakpoint navigatie");
 			var sIdeaGUID = oEvent.getSource().getBindingContext().getObject().Guid;
+			var iGeassocieerdTemplate = oEvent.getSource().getBindingContext().getObject().Template;
+			for (var i = 0; i < allIdeas.d.results.length; i++) {
+				// Checken welk veld leeg is.
+
+				if (iGeassocieerdTemplate == 1) {
+					for (var j = 0; j < veldenTemplate1.length; j++) {
+						var geselecteerdVeld = this.getTemplateSteps(iGeassocieerdTemplate, veldenTemplate1[j]); // geselecteerdVeld bevat de "master data" van een veld in een template (TemplateID, veldnaam, rol, stap, taak).
+						if (geselecteerdVeld.d.Role == "Verkoop") {
+							// Indien template een taak voor Sales bevat, kijken welk(e) veld(en) in welke stappen van het template ingevuld moeten worden.
+
+							var guidIdea = allIdeas.d.results[i].Guid;
+							var fieldName = geselecteerdVeld.d.Field;
+
+							var ingevuldeWaarde = this.getFieldValue(guidIdea, fieldName).d.FieldValue;
+							console.log(ingevuldeWaarde);
+
+							if (ingevuldeWaarde == "") {
+								console.log("Het veld dat ingevuld moet worden is: GUID: " + guidIda + ", field: " + fieldName);
+							} else {
+								console.log("Veld heeft al een waarde");
+							}
+						}
+					}
+				} else if (iGeassocieerdTemplate == 2) {
+
+				}
+			}
+
 			this.getOwnerComponent().getRouter().navto("tasksoverview", {
 				ideaGUID: sIdeaGUID
 			});
