@@ -181,6 +181,8 @@ sap.ui.define([
 					this.getView().addDependent(this._oSaveValuePopover);
 				}
 				this._oSaveValuePopover.openBy(oEvent.getSource());
+			} else {
+				alert("All fields for your department were filled out.");
 			}
 		},
 
@@ -193,7 +195,10 @@ sap.ui.define([
 			//	alert("Guid: " + updatedFieldGuid + ", field: " + updatedFieldName + ", entered value: " + enteredValue);
 
 			var recordData = {
+				"Guid": updatedFieldGuid,
+				"Field": updatedFieldName,
 				"FieldValue": enteredValue
+
 			};
 
 			$.ajax({
