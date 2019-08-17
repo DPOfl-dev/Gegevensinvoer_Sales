@@ -77,7 +77,7 @@ sap.ui.define([
 							var ingevuldeWaardeTemplate2 = fieldTemplate2.d.FieldValue;
 							console.log(ingevuldeWaardeTemplate2);
 
-							if (ingevuldeWaarde == "") {
+							if (ingevuldeWaardeTemplate2 == "") {
 								ideasArray.push(allIdeas.d.results[i]);
 								fieldsArray.push(fieldTemplate2);
 							} else {

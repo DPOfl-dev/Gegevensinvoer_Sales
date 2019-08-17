@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<Popover title="Add a label" class="sapUiContentPadding" placement="Bottom">
+	<Popover title="Please provide a value" class="sapUiContentPadding" placement="Bottom">
 		<footer>
 			<Toolbar>
 				<ToolbarSpacer/>
