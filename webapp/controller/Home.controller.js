@@ -49,12 +49,11 @@ sap.ui.define([
 
 							var field = this.getFieldValue(guidIdea, fieldName);
 							var ingevuldeWaarde = field.d.FieldValue;
-							console.log(ingevuldeWaarde);
 
 							if (ingevuldeWaarde == "") {
+								// Er werd nog geen waarde ingegeven, dit wordt een taak.
 								ideasArray.push(allIdeas.d.results[i]);
 								fieldsArray.push(field);
-								console.log("Breakpoint");
 							} else {
 								console.log("Wel een waarde ingegeven");
 							}
@@ -62,7 +61,7 @@ sap.ui.define([
 					}
 
 				} else if (template == 2) {
-					// Velden template 1 overlopen
+					// Velden template 2 overlopen
 
 					for (var k = 0; k < veldenTemplate2.length; k++) {
 						var geselecteerdVeldTemplate2 = this.getTemplateSteps(template, veldenTemplate2[k]); // geselecteerdVeld bevat de "master data" van een veld in een template (TemplateID, veldnaam, rol, stap, taak).
@@ -75,9 +74,9 @@ sap.ui.define([
 							var fieldTemplate2 = this.getFieldValue(guidIdeaTemplate2, fieldNameTemplate2);
 
 							var ingevuldeWaardeTemplate2 = fieldTemplate2.d.FieldValue;
-							console.log(ingevuldeWaardeTemplate2);
 
 							if (ingevuldeWaardeTemplate2 == "") {
+								// Er werd nog geen waarde ingegeven, dit wordt een taak.
 								ideasArray.push(allIdeas.d.results[i]);
 								fieldsArray.push(fieldTemplate2);
 							} else {
@@ -89,7 +88,6 @@ sap.ui.define([
 
 			}
 			this.getView().setModel(ideasModel);
-			console.log("Breakpoint");
 		},
 
 		getAllIdeas: function () {
@@ -147,25 +145,22 @@ sap.ui.define([
 		},
 
 		onIdeaSelection: function (oEvent) {
-			// Selected list item
+			// Geselecteerd item in de lijst
 			var oSelectedListItem = oEvent.getSource();
-			// Idea data
+			// Data van het idee
 			var oIdea = oSelectedListItem.getBindingContext().getObject();
-			// GUID of selected item
+			// GUID van het geselecteerde idee
 			var sGuid = oIdea.Guid;
-			console.log("sGuid: " + sGuid);
 
-			// Field data
+			// Data uit de Fields-array
 			var aFields = oSelectedListItem.getModel().getData().d.fields;
-			// Field data corresponding with selected item
+			// Veld-data van het geselecteerde item
 			var oField = null;
 			for (var i = 0; i < aFields.length; i++) {
 				if (aFields[i].d.Guid == sGuid) {
 					oField = aFields[i];
 				}
 			}
-
-			console.log(oField);
 
 			if (oField.d.FieldValue == "") {
 				var fieldsModel = new JSONModel({
@@ -177,7 +172,6 @@ sap.ui.define([
 					this._oSaveValuePopover = sap.ui.xmlfragment("popoverNavCon", "com.Flexso.DPO.Gegevensinvoer_Sales.view.popovers.submitValue",
 						this);
 					this._oSaveValuePopover.setModel(fieldsModel);
-					console.log("Breakpoint");
 					this.getView().addDependent(this._oSaveValuePopover);
 				}
 				this._oSaveValuePopover.openBy(oEvent.getSource());
@@ -192,8 +186,6 @@ sap.ui.define([
 			var updatedFieldName = oEvent.getSource().getModel().oData.d.Field;
 			var enteredValue = oEvent.getSource().getModel().oData.d.FieldValue;
 
-			//	alert("Guid: " + updatedFieldGuid + ", field: " + updatedFieldName + ", entered value: " + enteredValue);
-
 			var recordData = {
 				"Guid": updatedFieldGuid,
 				"Field": updatedFieldName,
@@ -201,6 +193,7 @@ sap.ui.define([
 
 			};
 
+			// De ingevoerde waarde wordt opgeslagen in de Fields-tabel.
 			$.ajax({
 				type: "PUT",
 				async: true,
